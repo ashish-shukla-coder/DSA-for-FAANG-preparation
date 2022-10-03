@@ -1,0 +1,34 @@
+# 1. Given an integer array nums of length n and an integer target, find three integers in nums
+# such that the sum is closest to the target.[Amazon]
+# You need to return the sum of three integers.
+# For example:arr = [-1, 2, 1, -4], target = 1
+# Output: 2
+# Explanation: [-1+2+1] = 2 (The sum that is closest to the target is 2)
+
+#Time Complexity --> O(n * log n)
+
+def closetSum(arr, target):
+
+    #Sorting array
+    arr.sort()
+    #Finding the length of array
+    n = len(arr)
+    closet_sum = arr[0] + arr[1] + arr[n-1]
+    for i in range(0,n-2):
+        left_s = i+1
+        right_s = n - 1
+        while left_s < right_s:
+            curr_sum = arr[i] + arr[left_s] +arr[right_s]
+            if curr_sum <= target:
+                left_s +=1
+            else:
+                right_s -=1
+
+            if abs(closet_sum - target) > abs(curr_sum - target):
+                closet_sum = curr_sum
+    return closet_sum
+
+# Driver code
+arr = [-1, 2, 1, -4]
+sum = 1
+print(closetSum(arr, sum))
