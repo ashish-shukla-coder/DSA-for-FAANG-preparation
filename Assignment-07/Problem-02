@@ -1,0 +1,27 @@
+# 2. Given three points, check whether they lie on a straight (collinear) or not. [Google]
+# For example:
+# Input- [(1,1), (1,6), (0,9)]
+# Output- No
+# Input- [(1,1), (1,4), (1,5)]
+# # Output- Yes
+
+def checkCollinear(arr):
+    rows = len(arr) - 1
+    colmn = len(arr[0])
+
+    first_element = arr[0][0]
+    reslt = 0
+    for i in range(rows, -1, -1):
+        print("loop-", arr[i][0])
+        # reslt += arr[i][0] *(arr[i][0] - arr[i+1][1])
+        print(arr[i][0])
+        print(arr[i][1])
+
+    return reslt
+
+# Driver code
+
+
+arr = [[1, 1], [1, 4], [1, 5]]
+arr_1 = [[1, 2], [1, 6], [1, 8]]
+print(checkCollinear(arr_1))
