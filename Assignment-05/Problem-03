@@ -1,0 +1,35 @@
+# Given a positive integer num, write a program that returns True if num is a perfect square else return False. Do not use built-in functions like sqrt. Also, talk about the time complexity of your code.
+# Test Cases:
+# Input: 16
+# Output: True
+
+# Input: 14
+# Output: False
+
+# def findPerfectSquareNumber(inpt):
+#     for i in range(inpt):
+#         if i*i == inpt:
+#             return True
+#         elif i*i > inpt:
+#             return False
+
+
+###### Time complexity --> O(log n )
+
+def findPerfectSquareNumberUsingBS(inpt):
+    left = 0
+    right = inpt
+
+    while left < right:
+        mid = left + (right - left) //2
+        if mid*mid == inpt:
+            return mid
+        elif mid*mid < inpt:
+            right = right+1
+        else:
+            left = left -1
+
+inpt = 17
+relst_1 = findPerfectSquareNumberUsingBS(inpt)
+print(relst_1)
+    
