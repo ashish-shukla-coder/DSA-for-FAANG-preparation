@@ -1,0 +1,41 @@
+# 3. An e-commerce site tracks the purchases made each day. The product that is purchased
+# the most one day is the featured product for the following day. If there is a tie for the product
+# purchased most frequently, those product names are ordered alphabetically ascending and
+# the last name in the list is chosen.[Amazon]
+# ['yellowShirt', 'redHat', 'blackShirt', 'bluePants', 'redHat','pinkHat', 'blackShirt', 'yellowShirt',
+# 'greenPants', 'greenPants', 'greenPants']
+# 'yellowShirt' - 2
+# 'redHat' - 2
+# 'blackShirt' - 2
+# 'bluePants' - 1
+# 'greenPants' - 3
+# 'pinkHat' - 1
+# Output - greenPants
+
+
+#Time Complexity  --> O(n)
+
+def purchasedMostFrequent(arr):
+
+    occurence = 1
+    max_occurence = 1
+    itemName = ""
+    n = len(arr)
+    arr.sort()
+
+    for i in range(n-1):
+        if arr[i] == arr[i+1] or arr[i] == arr[n-1]:
+            occurence += 1
+            if occurence > max_occurence:
+                max_occurence = occurence
+                itemName = arr[i]            
+        else:
+            occurence = 1
+    return max_occurence, itemName
+
+
+# Driver --
+
+inpt = ['yellowShirt','yellowShirt','yellowShirt' ,'redHat', 'blackShirt', 'bluePants', 'redHat', 'pinkHat',
+        'blackShirt', 'yellowShirt', 'greenPants', 'greenPants', 'greenPants']
+print(purchasedMostFrequent(inpt))
