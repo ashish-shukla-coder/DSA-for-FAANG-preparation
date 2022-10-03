@@ -1,0 +1,5 @@
+An almost sorted array is given to us and the task is to sort that array completely. Then,
+which sorting algorithm would you prefer and why
+
+
+# IF array is sorted then will use INSERTION sort because no swaping of element is required and time complexity for best case performance is - -> O(n)
