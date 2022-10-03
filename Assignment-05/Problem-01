@@ -1,0 +1,37 @@
+# Compute and return the square root of x, where x is guaranteed to be a non-negative integer. And since the return type is an integer, the decimal digits are truncated and only the integer part of the result is returned. Also, talk about the time complexity of your code.
+
+# Test Cases:
+# Input: 4
+# Output: 2
+
+# Input: 8
+# Output: 2
+# Explanation: The square root of 8 is 2.8284…., the decimal part is truncated and 2 is
+
+
+# def findSquareRoot(inpt):
+#     for i in range(inpt):
+#         if i*i <= inpt and (i+1)*(i+1) > inpt:
+#             return i
+
+
+###### Time complexity --> O(log n )
+
+def findSquareRootUsingBinarySearch(inpt):
+    left = 0
+    right = inpt
+
+    while left <= right:
+        mid = left+(right - left)//2
+
+        if ((mid*mid <= inpt) and (mid+1)*(mid+1) > inpt):
+            return mid
+        elif mid*mid > inpt:
+            right = mid - 1
+        else:
+            left = mid+1
+
+
+inpt = 8
+relst_1 = findSquareRootUsingBinarySearch(inpt)
+print("Result-", relst_1)
