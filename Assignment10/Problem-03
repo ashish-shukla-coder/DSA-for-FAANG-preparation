@@ -1,0 +1,62 @@
+# 3. Write a function to check whether a given linked list is palindrome or not
+# Sort 0s, 1s, and 2s in ascending order in Linked List
+
+# Time complexity: O(N), Iterating over the linked list of size N.
+# Auxiliary Space: O(N), Using stack to to store each data of Link list
+
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+    
+    def insertAtEnd(self, new_data):
+        new_node = Node(new_data)
+        if self.head is None:
+            self.head = new_node
+        else:
+            temp = self.head
+            while temp.next is not None:
+                temp = temp.next
+            temp.next = new_node
+
+    def checkPalidrome(self):
+
+        temp = self.head
+        stack=[]
+        isPalidrome = None
+
+        while temp:
+            stack.append(temp.data)
+            temp = temp.next
+        
+        temp = self.head
+        while temp:
+            popValue = stack.pop()
+            if temp.data == popValue:
+                isPalidrome = True
+            else:
+                isPalidrome = False
+                break
+            
+            temp = temp.next
+        
+        return isPalidrome
+
+LL1 = LinkedList()
+LL1.insertAtEnd(1)
+LL1.insertAtEnd(3)
+LL1.insertAtEnd(5)
+LL1.insertAtEnd(0)
+LL1.insertAtEnd(3)
+LL1.insertAtEnd(1)
+
+print(LL1.checkPalidrome())
+
+        
+        
