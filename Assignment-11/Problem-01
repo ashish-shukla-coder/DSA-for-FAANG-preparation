@@ -1,0 +1,63 @@
+
+# Implement Stack using Queues(Amazon and Microsoft)
+# Implement a LIFO stack using only two queues. The implemented stack should support all the
+# functions of a usual stack (push, pop, top, empty)
+# Implement MyStack class:
+# ● void push(int x) Pushes element x to the top of the stack.
+# ● int pop() Removes the element on the top of the stack and returns it.
+# ● int top() Returns the element on the top of the stack.
+# ● boolean empty() Returns true if the stack is empty, false otherwise.
+# Input
+# ["MyStack", "push", "push", "top", "pop", "empty"]
+# [[], [1], [2], [], [], []]
+# Output
+# [null, null, null, 2, 2, false]
+
+# Explanation
+# MyStack myStack = new MyStack();
+# myStack.push(1);
+# myStack.push(2);
+# myStack.top(); // return 2
+# myStack.pop(); // return 2
+# myStack.empty(); // return False
+
+from collections import deque
+class Mystack:
+    def __init__(self):
+        self.stackcontainer = deque()
+
+    def push(self, value):
+        return self.stackcontainer.append(value)
+
+    def pop(self):
+        return self.stackcontainer.pop()
+
+    def top(self):
+        if len(self.stackcontainer) > 0:
+            return self.stackcontainer[-1]
+        else:
+            return "No element"
+
+    def check_empty(self):
+        sizeOfCont = len(self.stackcontainer)
+        if sizeOfCont > 0:
+            return False
+        return True
+
+
+ObjStack = Mystack()
+
+ObjStack.push(5)
+ObjStack.push(4)
+ObjStack.push(2)
+
+print("Top element from the Stack -->", ObjStack.top())
+
+print("Last element pop from the Stack -->", ObjStack.pop())
+
+print("Last inserted element in Stack -->", ObjStack.top())
+
+if ObjStack.check_empty() == True:
+    print("Stack is Empty")
+else:
+    print("Stack is not empty")
