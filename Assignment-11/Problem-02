@@ -1,0 +1,60 @@
+# Implement Queue using Stack (Amazon)
+# Implement a first in first out (FIFO) queue using only two stacks. The implemented queue should
+# support a normal queue's functions (push, peek, pop, and empty).
+# Implement the MyQueue class:
+# ● void push(int x) Pushes element x to the back of the queue.
+# ● int pop() Removes the element from the front of the queue and returns it.
+# ● int peek() Returns the element at the front of the queue.
+# ● boolean empty() Returns true if the queue is empty, false otherwise.
+# Input
+# ["MyQueue", "push", "push", "peek", "pop", "empty"]
+# [[], [1], [2], [], [], []]
+# Output
+# [null, null, null, 1, 1, false]
+# Explanation
+# MyQueue myQueue = new MyQueue();
+# myQueue.push(1); // queue is: [1]
+# myQueue.push(2); // queue is: [1, 2] (leftmost in front of the queue)
+# myQueue.peek(); // return 1
+# myQueue.pop(); // return 1, the queue is [2]
+# myQueue.empty(); // return false
+
+
+from collections import deque
+
+
+class MyQueue:
+    def __init__(self):
+        self.queuecontainer = deque()
+
+    def push(self, value):
+        return self.queuecontainer.appendleft(value)
+
+    def pop(self):
+        return self.queuecontainer.pop()
+    
+    def peek(self):
+        return self.queuecontainer[-1]
+    
+
+    def check_empty(self):
+        sizeOfCont = len(self.queuecontainer)
+        if sizeOfCont > 0:
+            return False
+        return True
+
+    
+
+ObjQueue = MyQueue()
+
+ObjQueue.push(5)
+ObjQueue.push(4)
+ObjQueue.push(2)
+
+print("Top element from the Queue -->", ObjQueue.peek())
+print("First element pop from the Queue -->", ObjQueue.pop())
+
+if ObjQueue.check_empty() == True:
+    print("Queue is Empty")
+else:
+    print("Queue is not empty")
