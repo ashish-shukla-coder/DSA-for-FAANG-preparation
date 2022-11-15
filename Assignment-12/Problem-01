@@ -1,0 +1,42 @@
+# 1.	Implement the HashTable class that is already discussed in the live session, here you need to change
+#  the hash function method definition from division modulo to mid-square method.
+class HashTable:
+    def __init__(self,data):
+        self.MAX = data
+        self.arr = [None for i in range(self.MAX)]
+
+    def hash_function(self,key):
+        # Number of digit in m value
+        size_of_m = len(str(self.MAX))
+        # Squaring the key
+        square_of_key = key*key
+        # Number of digit after squaring the key value
+        size_of_key = len(str(square_of_key))
+        if size_of_m-1 >= size_of_key:
+            return square_of_key
+        elif size_of_key == size_of_m :
+            # Returning middle value after squaring
+            return int(str(square_of_key)[1:3])
+        elif size_of_key == size_of_m+1:
+            # Returning middle value after squaring
+            return int(str(square_of_key)[1:3])
+
+    def addItem(self,key,value):
+        h= self.hash_function(key)
+        print(h)
+        self.arr[h] = value
+    
+    def getItem(self,key):
+        h = self.hash_function(key)
+        print(h)
+        return self.arr[h]
+        
+
+##Driver code 
+
+# Passing the m value
+obj1 = HashTable(10)
+#Adding item to the hash table by passing key and value
+obj1.addItem(20,250)
+#Printing item based on key 
+print(obj1.getItem(20))
