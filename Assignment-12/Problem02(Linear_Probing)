@@ -1,0 +1,59 @@
+class HashTable:
+  def __init__(self):
+    self.MAX = 10
+    self.arr = [[] for i in range(self.MAX)]
+
+  ## hash function method definition
+  def hash_function(self, key, found, i):
+    summation = 0
+    for char in key:
+      summation += ord(char)
+    summation = summation + i if found else summation
+    return summation % self.MAX
+
+  ## addition of an item in the hash table
+  def __setitem__(self, key, value):
+    # Flag to check input key is equal as stored key value
+    found = False
+    i = 0
+    # Calling to the hash function to calculate h
+    h = self.hash_function(key,found,i)
+
+    # Checking if for given h value already value is stored
+    while len(self.arr[h]) != 0:
+        found =True
+        i+=1
+        # Checking for next susbquent index
+        h = self.hash_function(key,found,i)   
+    self.arr[h].append((key, value))
+  
+
+  def __getitem__(self, key):
+    i =0
+    # Flag to check input key is equal as stored key value
+    notFound = False
+    # Calling to the hash function to calculate h
+    h = self.hash_function(key,notFound,i)
+    for index, element in enumerate(self.arr[h]):
+    # Check input key is equal as stored key value      
+      if element[0] == key:
+        return element[1]
+      else:
+        notFound = True
+    while notFound :
+        i+=1
+        h=self.hash_function(key,notFound,i)
+        for index,element in enumerate(self.arr[h]):
+            if element[0] != key:
+                notFound = True
+            else:
+                return element[1]
+
+
+
+
+obj1 = HashTable()
+obj1.__setitem__('march 6',10)
+obj1.__setitem__('march 17',50)
+obj1.__setitem__('march 26',80)
+print(obj1.__getitem__('march 6'))
