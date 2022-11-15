@@ -1,0 +1,67 @@
+# Implement inOrder, preOrder, and postOrder traversal algorithms already discussed in live sessions without using recursion(as you already know implementation using recursion is already done in live sessions, so am looking at the code without recursion only, if you did the implementation using recursion, your solution will be marked as incorrect)
+
+
+class Node:
+    def __init__(self, data):
+        self.left = None
+        self.right = None
+        self.data = data
+
+def inOrder(root):
+        current = root
+        stack = []
+        while stack or current: 
+            if current:
+                stack.append(current)
+                current = current.left
+            else:           
+                current = stack.pop()
+                print(current.data, end=' ') 
+                current = current.right
+
+
+def preOrder(root):
+        current = root
+        stack = []
+        stack.append(current)
+        while stack: 
+            current = stack.pop() 
+            print(current.data, end=' ')
+            if current.right:
+                stack.append(current.right)
+ 
+            if current.left:
+                stack.append(current.left)
+
+def postOrder(root):
+        current = root
+        stack = []
+        new_stack = []
+        stack.append(current)
+        while stack: 
+            current = stack.pop() 
+            new_stack.append(current.data)
+            if current.left:
+                stack.append(current.left)
+            if current.right:
+                stack.append(current.right)
+        
+        while new_stack:
+            i = new_stack.pop()
+            print(i,end =" ")
+
+
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+print("Inorder Traversal")
+## function calling
+inOrder(root)
+print()
+print("Pre Order Traversal")
+preOrder(root)
+print()
+print("Post Order Traversal")
+postOrder(root)
