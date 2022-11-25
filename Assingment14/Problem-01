@@ -7,6 +7,24 @@
 # Explanation: 3 cannot be a left child of 1 because 3 > 1. Swapping 1 and 3
 # makes the BST valid.
 
-
+    def recoverTree(self, root: Optional[TreeNode]) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+        res = []
+        self.dfs(root, res)
+        first, second = None, None
+        for i in range(len(res)-1):
+            if res[i].val > res[i+1].val and not first:
+                first = res[i]
+            if res[i].val > res[i+1].val and first:
+                second = res[i+1]
+        first.val, second.val = second.val, first.val
+        
+    def dfs(self, root, res):
+        if root:
+            self.dfs(root.left, res)
+            res.append(root)
+            self.dfs(root.right, res)
 
 
