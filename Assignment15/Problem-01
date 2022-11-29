@@ -1,0 +1,42 @@
+# Find if Path Exists in Graph
+# There is a bi-directional graph with n vertices, where each vertex is labeled from 0 to n - 1 (inclusive).
+# The edges in the graph are represented as 2D integer array edges, where each edge[i] = [ui, vi]
+# denotes a bi-directional edge between vertex ui and vertex vi. Every vertex pair is connected by at
+# most one edge, and no vertex has an edge to itself.
+# You want to determine if there is a valid path that exists from the vertex source to the vertex
+# destination.
+# Given edges and the integers n, source, and destination, return true if there is a valid path from source
+# to destination, or false otherwise.
+# Example 1:
+# Input: n = 3, edges = [[0,1],[1,2],[2,0]], source = 0, destination = 2
+# Output: true
+# Explanation: There are two paths from vertex 0 to vertex 2:
+# - 0 → 1 → 2
+# - 0 → 2
+
+from collections import defaultdict
+def validPath(n: int, edges: list[list[int]], source: int, destination: int) -> bool:        
+        adj_list = defaultdict(list)        
+        for nod in edges[0]:
+            adj_list[nod[0]].append(nod[1])
+            adj_list[nod[1]].append(nod[0])
+
+        visited_node = set()
+        def dfs(node):
+            if node == destination: 
+                return True
+            if node not in visited_node:
+                visited_node.add(node)
+                for neighbhour in adj_list[node]:
+                    result = dfs(neighbhour)
+                    if result:
+                        return True
+        return dfs(source)
+
+
+# n = 3, 
+# edges = [[0,2],[1,2],[2,0]], 
+# source = 0, 
+# destination = 2
+# result = validPath(n,edges,source,destination)
+# print(result)
