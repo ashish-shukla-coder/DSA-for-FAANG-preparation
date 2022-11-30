@@ -15,9 +15,9 @@
 # - 0 → 2
 
 from collections import defaultdict
-def validPath(n: int, edges: list[list[int]], source: int, destination: int) -> bool:        
+    def validPath(self, n: int, edges: list[list[int]], source: int, destination: int) -> bool:        
         adj_list = defaultdict(list)        
-        for nod in edges[0]:
+        for nod in edges:
             adj_list[nod[0]].append(nod[1])
             adj_list[nod[1]].append(nod[0])
 
