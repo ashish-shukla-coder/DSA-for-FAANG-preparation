@@ -5,17 +5,17 @@
 # Output: [4,7,2,9,6,3,1]
 
 
-def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:      
-    if (root == None):
-        return 
-    queue = []
-    queue.append(root)
-    while (len(queue)):
-        curr = queue[0]
-        queue.pop(0)
-        curr.left, curr.right = curr.right, curr.left
-        if (curr.left):
-            queue.append(curr.left)
-        if (curr.right):
-            queue.append(curr.right)
-    return root.val
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:      
+        if (root == None):
+            return 
+        queue = []
+        queue.append(root)
+        while (len(queue)):
+            curr = queue[0]
+            queue.pop(0)
+            curr.left, curr.right = curr.right, curr.left
+            if (curr.left):
+                queue.append(curr.left)
+            if (curr.right):
+                queue.append(curr.right)
+        return root
